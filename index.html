@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rogério Estumano | Sistemas, Gestão & Dados</title>
+    <meta name="description" content="Ecossistema completo de gestão comercial, PDV, Cardápio Digital, KDS, Estoque com CMV, DRE e Inteligência de Dados para empresas.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-main: #06080b;
+            --bg-surface: #0e1218;
+            --bg-card: #131820;
+            --border: #222936;
+            --brand-green: #38B000;
+            --brand-green-hover: #46d600;
+            --brand-orange: #FF3B00;
+            --brand-navy: #0B3152;
+            --text-white: #ffffff;
+            --text-gray: #94a3b8;
+            --text-light: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1220px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ================= NAVBAR ================= */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(6, 8, 11, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 78px;
+            gap: 16px;
+        }
+
+        .brand-box {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.05;
+        }
+
+        .brand-name {
+            font-weight: 900;
+            font-size: 1.15rem;
+            letter-spacing: 0.5px;
+            color: var(--text-white);
+        }
+
+        .brand-name span {
+            color: var(--brand-orange);
+        }
+
+        .brand-sub {
+            font-size: 0.62rem;
+            font-weight: 600;
+            letter-spacing: 1.2px;
+            color: var(--text-gray);
+            margin-top: 3px;
+        }
+
+        nav.nav-links {
+            display: flex;
+            gap: 28px;
+        }
+
+        nav.nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        nav.nav-links a:hover {
+            color: var(--brand-green);
+        }
+
+        .btn-cta-nav {
+            background: var(--brand-green);
+            color: #041100;
+            font-weight: 800;
+            font-size: 0.82rem;
+            padding: 11px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .btn-cta-nav:hover {
+            background: var(--brand-green-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(56, 176, 0, 0.35);
+        }
+
+        @media (max-width: 860px) {
+            nav.nav-links { display: none; }
+        }
+
+        /* ================= HERO & ÓRBITA INTERATIVA ================= */
+        .hero {
+            padding: 64px 0 80px;
+            background: radial-gradient(circle at 75% 40%, rgba(255, 59, 0, 0.08), transparent 45%),
+                        radial-gradient(circle at 20% 20%, rgba(56, 176, 0, 0.07), transparent 40%);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.05fr 0.95fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        @media (max-width: 980px) {
+            .hero-grid { grid-template-columns: 1fr; text-align: center; }
+        }
+
+        .pill-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 59, 0, 0.12);
+            border: 1px solid rgba(255, 59, 0, 0.35);
+            color: #ff6b3d;
+            font-size: 0.76rem;
+            font-weight: 700;
+            padding: 6px 14px;
+            border-radius: 50px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 4vw, 3.1rem);
+            font-weight: 900;
+            line-height: 1.15;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 .highlight-orange { color: var(--brand-orange); }
+        .hero h1 .highlight-green { color: var(--brand-green); }
+
+        .hero p {
+            color: var(--text-gray);
+            font-size: 1.05rem;
+            margin-bottom: 30px;
+            max-width: 580px;
+        }
+
+        @media (max-width: 980px) {
+            .hero p { margin-left: auto; margin-right: auto; }
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 980px) {
+            .hero-actions { justify-content: center; }
+        }
+
+        .btn-primary {
+            background: var(--brand-green);
+            color: #031200;
+            font-weight: 800;
+            padding: 15px 28px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background: var(--brand-green-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(56, 176, 0, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--bg-card);
+            color: var(--text-white);
+            border: 1px solid var(--border);
+            font-weight: 700;
+            padding: 15px 26px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: 0.2s;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--brand-orange);
+            color: var(--brand-orange);
+        }
+
+        .trust-strip {
+            display: flex;
+            gap: 24px;
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 980px) {
+            .trust-strip { justify-content: center; }
+        }
+
+        .trust-item strong {
+            display: block;
+            font-size: 1.25rem;
+            color: var(--text-white);
+        }
+
+        .trust-item span {
+            font-size: 0.78rem;
+            color: var(--text-gray);
+        }
+
+        /* ================= ECOSSISTEMA ORBITAL ================= */
+        .orbit-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .orbit-stage {
+            position: relative;
+            width: 390px;
+            height: 390px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 440px) {
+            .orbit-stage { width: 320px; height: 320px; }
+        }
+
+        .ring {
+            position: absolute;
+            border-radius: 50%;
+            border: 1.5px solid rgba(255, 255, 255, 0.08);
+            pointer-events: none;
+        }
+
+        .ring-1 {
+            width: 170px; height: 170px;
+            border-color: rgba(56, 176, 0, 0.35);
+            box-shadow: 0 0 25px rgba(56, 176, 0, 0.08);
+        }
+
+        .ring-2 {
+            width: 270px; height: 270px;
+            border-color: rgba(255, 59, 0, 0.35);
+            box-shadow: 0 0 30px rgba(255, 59, 0, 0.08);
+        }
+
+        .ring-3 {
+            width: 365px; height: 365px;
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+
+        @media (max-width: 440px) {
+            .ring-3 { width: 300px; height: 300px; }
+            .ring-2 { width: 220px; height: 220px; }
+            .ring-1 { width: 140px; height: 140px; }
+        }
+
+        .orbit-center {
+            position: relative;
+            z-index: 10;
+            width: 96px;
+            height: 96px;
+            border-radius: 50%;
+            background: #0b0e14;
+            border: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 0 35px rgba(255, 59, 0, 0.25);
+            transition: transform 0.2s;
+        }
+
+        .orbit-center:hover {
+            transform: scale(1.06);
+            border-color: var(--brand-green);
+        }
+
+        .orbit-node {
+            position: absolute;
+            z-index: 15;
+            background: #131923;
+            color: var(--text-white);
+            border: 1px solid var(--border);
+            padding: 7px 13px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            cursor: pointer;
+            white-space: nowrap;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+            transition: all 0.2s;
+            transform: translate(-50%, -50%);
+        }
+
+        .orbit-node:hover, .orbit-node.active {
+            background: var(--brand-orange);
+            border-color: var(--brand-orange);
+            color: #fff;
+            scale: 1.08;
+            z-index: 25;
+        }
+
+        .orbit-hint {
+            font-size: 0.76rem;
+            color: var(--text-gray);
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .module-inspector {
+            margin-top: 16px;
+            width: 100%;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--brand-green);
+            border-radius: 12px;
+            padding: 16px 20px;
+            text-align: left;
+        }
+
+        .module-inspector h4 {
+            font-size: 0.95rem;
+            color: var(--brand-green);
+            margin-bottom: 4px;
+        }
+
+        .module-inspector p {
+            font-size: 0.84rem;
+            color: var(--text-light);
+            margin: 0;
+        }
+
+        /* ================= SEÇÕES GERAIS ================= */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 720px;
+            margin: 0 auto 52px;
+        }
+
+        .section-header span {
+            color: var(--brand-orange);
+            font-weight: 800;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+        }
+
+        .section-header h2 {
+            font-size: clamp(1.6rem, 3vw, 2.35rem);
+            font-weight: 800;
+            margin-top: 8px;
+            margin-bottom: 14px;
+        }
+
+        .section-header p {
+            color: var(--text-gray);
+            font-size: 0.98rem;
+        }
+
+        /* ================= DORES VS SOLUÇÕES ================= */
+        .bg-alt {
+            background: var(--bg-surface);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 22px;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 26px;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--brand-green);
+        }
+
+        .icon-box {
+            width: 46px;
+            height: 46px;
+            border-radius: 10px;
+            background: rgba(56, 176, 0, 0.12);
+            color: var(--brand-green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.35rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .icon-box.orange {
+            background: rgba(255, 59, 0, 0.12);
+            color: var(--brand-orange);
+        }
+
+        .feature-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            color: var(--text-gray);
+            font-size: 0.88rem;
+        }
+
+        /* ================= PLANOS E INVESTIMENTO ================= */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            align-items: stretch;
+        }
+
+        .price-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px 26px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .price-card.featured {
+            border: 2px solid var(--brand-green);
+            box-shadow: 0 12px 40px rgba(56, 176, 0, 0.14);
+        }
+
+        .badge-popular {
+            position: absolute;
+            top: -13px;
+            right: 22px;
+            background: var(--brand-green);
+            color: #031200;
+            font-size: 0.72rem;
+            font-weight: 800;
+            padding: 4px 12px;
+            border-radius: 50px;
+            text-transform: uppercase;
+        }
+
+        .price-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 6px;
+        }
+
+        .price-desc {
+            font-size: 0.84rem;
+            color: var(--text-gray);
+            margin-bottom: 20px;
+        }
+
+        .price-value {
+            font-size: 2.3rem;
+            font-weight: 900;
+            color: var(--text-white);
+            margin-bottom: 22px;
+        }
+
+        .price-value small {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-gray);
+        }
+
+        .price-list {
+            list-style: none;
+            margin-bottom: 28px;
+            flex-grow: 1;
+        }
+
+        .price-list li {
+            font-size: 0.87rem;
+            color: var(--text-light);
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .price-list li::before {
+            content: "✓";
+            color: var(--brand-green);
+            font-weight: 900;
+        }
+
+        .price-list li.off {
+            color: #525d70;
+            text-decoration: line-through;
+        }
+
+        .price-list li.off::before {
+            content: "×";
+            color: #525d70;
+        }
+
+        .custom-banner {
+            margin-top: 32px;
+            background: linear-gradient(135deg, #0b3152 0%, #131820 100%);
+            border: 1px solid #1e4b75;
+            border-radius: 16px;
+            padding: 28px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        /* ================= FORMULÁRIO DEMO ================= */
+        .cta-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 42px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 36px;
+            align-items: center;
+        }
+
+        @media (max-width: 860px) {
+            .cta-box { grid-template-columns: 1fr; padding: 28px 20px; }
+        }
+
+        .form-row {
+            margin-bottom: 14px;
+        }
+
+        .form-row label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-light);
+            margin-bottom: 6px;
+        }
+
+        .form-row input, .form-row select {
+            width: 100%;
+            padding: 12px 14px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--bg-main);
+            color: var(--text-white);
+            font-size: 0.92rem;
+        }
+
+        .form-row input:focus, .form-row select:focus {
+            outline: none;
+            border-color: var(--brand-green);
+        }
+
+        /* ================= FAQ ================= */
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            margin-bottom: 12px;
+            padding: 18px 22px;
+        }
+
+        .faq-item summary {
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 0.96rem;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-item summary::after {
+            content: "+";
+            color: var(--brand-orange);
+            font-size: 1.3rem;
+        }
+
+        .faq-item[open] summary::after {
+            content: "−";
+        }
+
+        .faq-item p {
+            margin-top: 12px;
+            color: var(--text-gray);
+            font-size: 0.88rem;
+        }
+
+        /* ================= FOOTER ================= */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 40px 0;
+            text-align: center;
+            color: var(--text-gray);
+            font-size: 0.84rem;
+        }
+    </style>
+</head>
+<body>
+
+<!-- ==================== CABEÇALHO ==================== -->
+<header>
+    <div class="container nav-wrap">
+        <a href="#" class="brand-box">
+            <!-- Logo Vetorial Oficial RE (Rogério Estumano) -->
+            <svg width="46" height="40" viewBox="0 0 120 105" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Barras Brancas (R) -->
+                <rect x="8" y="55" width="18" height="42" rx="3" fill="#FFFFFF"/>
+                <rect x="33" y="42" width="18" height="55" rx="3" fill="#FFFFFF"/>
+                <rect x="58" y="28" width="18" height="69" rx="3" fill="#FFFFFF"/>
+                <!-- Letra E Laranja-Avermelhada -->
+                <path d="M58 46C58 38.268 64.268 32 72 32H106C110.418 32 114 35.5817 114 40V48H76V58H114V71H76V81H114V89C114 93.4183 110.418 97 106 97H58V46Z" fill="#FF3B00"/>
+                <!-- Gráfico Ascendente Verde -->
+                <path d="M17 44L42 30L67 15" stroke="#38B000" stroke-width="6" stroke-linecap="round"/>
+                <rect x="7" y="36" width="19" height="15" rx="4" fill="#38B000"/>
+                <rect x="32" y="22" width="19" height="15" rx="4" fill="#38B000"/>
+                <rect x="57" y="7" width="19" height="15" rx="4" fill="#38B000"/>
+            </svg>
+            <div class="brand-text">
+                <span class="brand-name">ROGÉRIO <span>ESTUMANO</span></span>
+                <span class="brand-sub">SISTEMAS, GESTÃO & DADOS</span>
+            </div>
+        </a>
+
+        <nav class="nav-links">
+            <a href="#ecossistema">Ecossistema</a>
+            <a href="#diferenciais">Gestão & BI</a>
+            <a href="#planos">Planos</a>
+            <a href="#faq">Dúvidas</a>
+        </nav>
+
+        <a href="javascript:void(0)" onclick="abrirWhatsApp('Olá Rogério! Vi seu site e quero falar com um especialista sobre o sistema de gestão.')" class="btn-cta-nav">
+            Falar com Especialista
+        </a>
+    </div>
+</header>
+
+<!-- ==================== HERO SECTION ==================== -->
+<section class="hero" id="ecossistema">
+    <div class="container hero-grid">
+        <div>
+            <div class="pill-tag">Plataforma Completa para Empresas & Delivery</div>
+            <h1>
+                Do pedido no balcão ao <span class="highlight-orange">lucro real</span> no <span class="highlight-green">DRE</span>.
+            </h1>
+            <p>
+                Chega de sistemas engessados e planilhas soltas. Centralize seu Cardápio Digital sem taxas, PDV Caixa, Tela de Cozinha (KDS), Estoque com ficha técnica e indicadores financeiros em um único ecossistema.
+            </p>
+            <div class="hero-actions">
+                <a href="#demonstracao" class="btn-primary">Agendar Demonstração Gratuita →</a>
+                <a href="#planos" class="btn-secondary">Ver Planos e Recursos</a>
+            </div>
+
+            <div class="trust-strip">
+                <div class="trust-item">
+                    <strong>0% Comissão</strong>
+                    <span>Canal de vendas próprio</span>
+                </div>
+                <div class="trust-item">
+                    <strong>Tempo Real</strong>
+                    <span>Sincronia Caixa, Salão e KDS</span>
+                </div>
+                <div class="trust-item">
+                    <strong>CMV & DRE</strong>
+                    <span>Controle real de margem</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Órbita Interativa do Ecossistema -->
+        <div class="orbit-wrapper">
+            <div class="orbit-stage" id="orbitStage">
+                <div class="ring ring-1"></div>
+                <div class="ring ring-2"></div>
+                <div class="ring ring-3"></div>
+
+                <!-- Centro Clicável (Pausa/Retoma rotação) -->
+                <div class="orbit-center" id="orbitCenter" title="Clique para pausar ou girar a órbita">
+                    <svg width="52" height="46" viewBox="0 0 120 105" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="8" y="55" width="18" height="42" rx="3" fill="#FFFFFF"/>
+                        <rect x="33" y="42" width="18" height="55" rx="3" fill="#FFFFFF"/>
+                        <rect x="58" y="28" width="18" height="69" rx="3" fill="#FFFFFF"/>
+                        <path d="M58 46C58 38.268 64.268 32 72 32H106C110.418 32 114 35.5817 114 40V48H76V58H114V71H76V81H114V89C114 93.4183 110.418 97 106 97H58V46Z" fill="#FF3B00"/>
+                        <path d="M17 44L42 30L67 15" stroke="#38B000" stroke-width="6" stroke-linecap="round"/>
+                        <rect x="7" y="36" width="19" height="15" rx="4" fill="#38B000"/>
+                        <rect x="32" y="22" width="19" height="15" rx="4" fill="#38B000"/>
+                        <rect x="57" y="7" width="19" height="15" rx="4" fill="#38B000"/>
+                    </svg>
+                </div>
+            </div>
+            <p class="orbit-hint">Clique nos módulos para explorar • Toque no centro para pausar</p>
+
+            <!-- Inspetor Dinâmico do Módulo Selecionado -->
+            <div class="module-inspector" id="moduleInspector">
+                <h4 id="inspTitle">Cardápio Digital & Delivery Próprio</h4>
+                <p id="inspDesc">Seu cliente pede direto pelo link exclusivo da sua loja, com cálculo automático de taxa por bairro, sem você pagar comissão por pedido.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== PROBLEMAS QUE RESOLVEMOS ==================== -->
+<section class="bg-alt" id="diferenciais">
+    <div class="container">
+        <div class="section-header">
+            <span>Inteligência Operacional & Financeira</span>
+            <h2>Por que empresas trocam sistemas comuns pelo nosso ecossistema?</h2>
+            <p>Unimos engenharia de software com visão contábil e análise de dados para você dominar tanto o balcão quanto o caixa.</p>
+        </div>
+
+        <div class="cards-grid">
+            <div class="feature-card">
+                <div class="icon-box">01</div>
+                <h3>Venda Direta sem Taxas Abusivas</h3>
+                <p>Cardápio web rápido e responsivo com a identidade da sua empresa, regra de entrega por bairro e envio direto para a cozinha.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon-box orange">02</div>
+                <h3>Cozinha Sincronizada (KDS & Salão)</h3>
+                <p>Acabe com comandas perdidas e atrasos. Pedidos do balcão, garçom ou delivery aparecem instantaneamente na tela da produção.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon-box">03</div>
+                <h3>Estoque com Ficha Técnica (CMV)</h3>
+                <p>Cadastre os insumos de cada produto. A cada venda realizada, o sistema abate o estoque e calcula o custo exato da mercadoria vendida.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon-box orange">04</div>
+                <h3>DRE Gerencial & Exportação BI</h3>
+                <p>Saiba exatamente quanto sobra no final do mês. Relatórios prontos de faturamento, custos variáveis, despesas fixas e margem líquida.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== PLANOS ==================== -->
+<section id="planos">
+    <div class="container">
+        <div class="section-header">
+            <span>Planos Modulares</span>
+            <h2>Escolha o nível de controle ideal para o momento da sua empresa</h2>
+            <p>Implante rápido, sem burocracia e evolua de plano conforme sua operação cresce.</p>
+        </div>
+
+        <div class="pricing-grid">
+            <!-- Plano Start -->
+            <div class="price-card">
+                <h3>Plano Start</h3>
+                <p class="price-desc">Ideal para operações enxutas e delivery próprio.</p>
+                <div class="price-value">R$ 89,90 <small>/mês</small></div>
+                <ul class="price-list">
+                    <li>Cardápio Digital com Link Exclusivo</li>
+                    <li>PDV Frente de Caixa Completo</li>
+                    <li>Taxa de Entrega por Bairro</li>
+                    <li>Impressão de Comandas</li>
+                    <li class="off">Monitor de Cozinha (KDS) & Garçom</li>
+                    <li class="off">Estoque, CMV e DRE Gerencial</li>
+                </ul>
+                <button class="btn-secondary" style="width:100%;cursor:pointer;" onclick="abrirWhatsApp('Olá Rogério! Tenho interesse no *Plano Start (R$ 89,90/mês)* para minha empresa.')">
+                    Contratar Plano Start
+                </button>
+            </div>
+
+            <!-- Plano Pro -->
+            <div class="price-card">
+                <h3>Plano Pro</h3>
+                <p class="price-desc">Para operações com salão, mesas e equipe de entrega.</p>
+                <div class="price-value">R$ 159,90 <small>/mês</small></div>
+                <ul class="price-list">
+                    <li>Tudo do Plano Start</li>
+                    <li>Monitor de Cozinha em Tempo Real (KDS)</li>
+                    <li>App Web para Garçom e Controle de Mesas</li>
+                    <li>Painel de Rotas e Entregas (Motoboy)</li>
+                    <li>Suporte Prioritário via WhatsApp</li>
+                    <li class="off">Ficha Técnica, CMV e DRE Completo</li>
+                </ul>
+                <button class="btn-secondary" style="width:100%;cursor:pointer;" onclick="abrirWhatsApp('Olá Rogério! Tenho interesse no *Plano Pro (R$ 159,90/mês)* para minha empresa.')">
+                    Contratar Plano Pro
+                </button>
+            </div>
+
+            <!-- Plano Gestão Total -->
+            <div class="price-card featured">
+                <div class="badge-popular">Mais Escolhido</div>
+                <h3>Gestão Total + BI</h3>
+                <p class="price-desc">Operação completa + inteligência financeira para escalar lucro.</p>
+                <div class="price-value">R$ 249,90 <small>/mês</small></div>
+                <ul class="price-list">
+                    <li>Todos os módulos operacionais liberados</li>
+                    <li>Controle de Estoque com Alerta Mínimo</li>
+                    <li>Ficha Técnica e Cálculo Automático de CMV</li>
+                    <li>DRE Gerencial e Fluxo Financeiro</li>
+                    <li>Exportação estruturada para Excel e Power BI</li>
+                    <li>Implantação assistida do seu catálogo</li>
+                </ul>
+                <button class="btn-primary" style="width:100%;justify-content:center;" onclick="abrirWhatsApp('Olá Rogério! Quero contratar o *Plano Gestão Total + BI (R$ 249,90/mês)* com CMV e DRE.')">
+                    Quero Gestão Total →
+                </button>
+            </div>
+        </div>
+
+        <!-- Banner Projetos Sob Medida -->
+        <div class="custom-banner">
+            <div>
+                <span style="color:var(--brand-green);font-weight:800;font-size:0.76rem;text-transform:uppercase;letter-spacing:1px;">Consultoria & Desenvolvimento Sob Medida</span>
+                <h3 style="font-size:1.35rem;margin:6px 0;">Precisa de um sistema exclusivo, dashboard em Power BI ou automação de processos?</h3>
+                <p style="color:var(--text-light);font-size:0.9rem;max-width:740px;">
+                    Além da nossa plataforma pronta, desenvolvemos aplicações web personalizadas, planilhas inteligentes automatizadas e painéis executivos de dados sob medida para o seu negócio.
+                </p>
+            </div>
+            <button class="btn-primary" onclick="abrirWhatsApp('Olá Rogério! Gostaria de solicitar um orçamento para um *projeto/consultoria sob medida* de sistemas ou dados.')">
+                Solicitar Orçamento Sob Medida
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== DEMONSTRAÇÃO / CAPTURA DE LEAD ==================== -->
+<section class="bg-alt" id="demonstracao">
+    <div class="container">
+        <div class="cta-box">
+            <div>
+                <span style="color:var(--brand-orange);font-weight:800;font-size:0.78rem;text-transform:uppercase;">Teste na Prática</span>
+                <h2 style="font-size:1.95rem;margin:10px 0 14px;">Veja o sistema funcionando ao vivo para o seu negócio</h2>
+                <p style="color:var(--text-gray);font-size:0.95rem;margin-bottom:20px;">
+                    Preencha os dados ao lado para iniciar uma demonstração guiada e receber um ambiente de teste configurado com o nome da sua empresa.
+                </p>
+                <ul class="price-list" style="margin-bottom:0;">
+                    <li>Funciona em computador, tablet e celular (sem instalação pesada)</li>
+                    <li>Configuração inicial rápida com apoio técnico direto</li>
+                    <li>Sem multa de fidelidade nos planos mensais</li>
+                </ul>
+            </div>
+
+            <form id="demoForm">
+                <div class="form-row">
+                    <label>Seu Nome</label>
+                    <input type="text" id="leadNome" placeholder="Ex: Carlos Silva" required>
+                </div>
+                <div class="form-row">
+                    <label>Nome da Empresa</label>
+                    <input type="text" id="leadEmpresa" placeholder="Ex: Hamburgueria Central" required>
+                </div>
+                <div class="form-row">
+                    <label>Segmento / Principal Necessidade</label>
+                    <select id="leadSegmento">
+                        <option value="Restaurante / Lanchonete / Delivery">Restaurante / Lanchonete / Delivery</option>
+                        <option value="Comércio / Conveniência / Loja">Comércio / Conveniência / Loja</option>
+                        <option value="Gestão Financeira / Dashboards BI">Gestão Financeira / Dashboards BI</option>
+                        <option value="Sistema Personalizado Sob Medida">Sistema Personalizado Sob Medida</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-primary" style="width:100%;justify-content:center;margin-top:8px;">
+                    Solicitar Demonstração no WhatsApp
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== FAQ ==================== -->
+<section id="faq">
+    <div class="container" style="max-width:840px;">
+        <div class="section-header">
+            <span>Perguntas Frequentes</span>
+            <h2>Dúvidas sobre implantação e funcionamento</h2>
+        </div>
+
+        <details class="faq-item" open>
+            <summary>Preciso comprar computadores caros ou servidores para usar o sistema?</summary>
+            <p>Não. Toda a plataforma roda na nuvem direto pelo navegador (Google Chrome, Edge ou Safari). Você pode operar no seu computador atual no caixa, usar um tablet ou monitor na cozinha (KDS) e lançar pedidos pelo celular dos garçons.</p>
+        </details>
+
+        <details class="faq-item">
+            <summary>Como funciona o cálculo de CMV e DRE dentro do sistema?</summary>
+            <p>No plano Gestão Total, você cadastra os insumos comprados (carnes, pães, embalagens, bebidas) e monta a ficha técnica de cada item vendido. A cada pedido finalizado, o sistema baixa o estoque automaticamente e alimenta o DRE gerencial com receita, custo direto e margem líquida.</p>
+        </details>
+
+        <details class="faq-item">
+            <summary>Consigo exportar meus dados financeiros para análise externa?</summary>
+            <p>Sim. Os relatórios de vendas, caixa e movimentações financeiras podem ser exportados em formatos compatíveis com Excel e Power BI para auditoria e planejamento estratégico.</p>
+        </details>
+
+        <details class="faq-item">
+            <summary>Existe fidelidade ou multa de cancelamento?</summary>
+            <p>Não trabalhamos com contratos de fidelidade aprisionadores nos planos mensais. Você permanece pela eficiência e pelo resultado financeiro que o sistema gera na sua operação.</p>
+        </details>
+    </div>
+</section>
+
+<!-- ==================== RODAPÉ ==================== -->
+<footer>
+    <div class="container">
+        <div style="display:inline-flex;align-items:center;gap:10px;margin-bottom:12px;">
+            <svg width="32" height="28" viewBox="0 0 120 105" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="8" y="55" width="18" height="42" rx="3" fill="#FFFFFF"/>
+                <rect x="33" y="42" width="18" height="55" rx="3" fill="#FFFFFF"/>
+                <rect x="58" y="28" width="18" height="69" rx="3" fill="#FFFFFF"/>
+                <path d="M58 46C58 38.268 64.268 32 72 32H106C110.418 32 114 35.5817 114 40V48H76V58H114V71H76V81H114V89C114 93.4183 110.418 97 106 97H58V46Z" fill="#FF3B00"/>
+                <path d="M17 44L42 30L67 15" stroke="#38B000" stroke-width="6" stroke-linecap="round"/>
+                <rect x="7" y="36" width="19" height="15" rx="4" fill="#38B000"/>
+                <rect x="32" y="22" width="19" height="15" rx="4" fill="#38B000"/>
+                <rect x="57" y="7" width="19" height="15" rx="4" fill="#38B000"/>
+            </svg>
+            <strong style="color:#fff;font-size:1rem;">ROGÉRIO <span style="color:var(--brand-orange)">ESTUMANO</span></strong>
+        </div>
+        <p>Sistemas, Gestão & Dados • Soluções Tecnológicas para Empresas</p>
+        <p style="margin-top:6px;font-size:0.76rem;color:#64748b;">© 2026 Rogério Estumano. Todos os direitos reservados.</p>
+    </div>
+</footer>
+
+<script>
+    // =========================================================================
+    // CONFIGURAÇÃO DO SEU WHATSAPP COMERCIAL (55 + DDD + NÚMERO)
+    // =========================================================================
+    const WHATSAPP_COMERCIAL = '5548935006603';
+
+    function abrirWhatsApp(mensagem) {
+        const url = `https://wa.me/${WHATSAPP_COMERCIAL}?text=${encodeURIComponent(mensagem)}`;
+        window.open(url, '_blank');
+    }
+
+    // Envio do formulário de demonstração
+    document.getElementById('demoForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const nome = document.getElementById('leadNome').value.trim();
+        const empresa = document.getElementById('leadEmpresa').value.trim();
+        const segmento = document.getElementById('leadSegmento').value;
+
+        const texto = `Olá Rogério! Meu nome é *${nome}*, da empresa *${empresa}* (${segmento}). Gostaria de agendar uma demonstração do seu ecossistema de gestão.`;
+        abrirWhatsApp(texto);
+    });
+
+    // =========================================================================
+    // MOTOR DA ÓRBITA INTERATIVA DO ECOSSISTEMA
+    // =========================================================================
+    const modulosData = [
+        {
+            nome: 'Cardápio Digital',
+            raio: 175,
+            angulo: 0,
+            velocidade: 0.004,
+            titulo: 'Cardápio Digital & Delivery Próprio',
+            desc: 'Seu cliente pede direto pelo link exclusivo da sua loja, com cálculo automático de taxa por bairro, sem você pagar comissão por pedido.'
+        },
+        {
+            nome: 'Caixa (PDV)',
+            raio: 130,
+            angulo: 0.9,
+            velocidade: -0.005,
+            titulo: 'PDV Frente de Caixa Ágil',
+            desc: 'Lançamento rápido de vendas no balcão, controle de abertura/fechamento de turno, formas de pagamento e emissão de comprovante.'
+        },
+        {
+            nome: 'KDS Cozinha',
+            raio: 175,
+            angulo: 1.7,
+            velocidade: 0.004,
+            titulo: 'Monitor de Produção (KDS)',
+            desc: 'Tela em tempo real para a cozinha acompanhar fila de preparo, tempo de espera e dar baixa nos pedidos prontos com um toque.'
+        },
+        {
+            nome: 'Garçom & Salão',
+            raio: 130,
+            angulo: 2.6,
+            velocidade: -0.005,
+            titulo: 'Atendimento de Mesas & Garçom',
+            desc: 'Pedidos lançados direto do celular do garçom na mesa caem instantaneamente no caixa e na cozinha sem erro de anotação.'
+        },
+        {
+            nome: 'DRE Financeiro',
+            raio: 175,
+            angulo: 3.3,
+            velocidade: 0.004,
+            titulo: 'DRE Gerencial & Fluxo de Caixa',
+            desc: 'Visão clara de receitas, custos variáveis, despesas fixas e lucro líquido real para tomada de decisão segura.'
+        },
+        {
+            nome: 'Estoque & CMV',
+            raio: 130,
+            angulo: 4.3,
+            velocidade: -0.005,
+            titulo: 'Estoque Inteligente & Ficha Técnica (CMV)',
+            desc: 'Baixa automática de ingredientes a cada venda e cálculo exato da margem de lucro de cada item do cardápio.'
+        },
+        {
+            nome: 'Entregas (Motoboy)',
+            raio: 175,
+            angulo: 4.9,
+            velocidade: 0.004,
+            titulo: 'Logística & Painel de Entregas',
+            desc: 'Organização de pedidos prontos para rota, controle de taxas por entregador e agilidade no despacho.'
+        },
+        {
+            nome: 'BI & Dados',
+            raio: 85,
+            angulo: 5.5,
+            velocidade: 0.006,
+            titulo: 'Dashboards Executivos & Exportação BI',
+            desc: 'Indicadores de ticket médio, produtos campeões de venda e exportação limpa para Excel e Power BI.'
+        }
+    ];
+
+    const stage = document.getElementById('orbitStage');
+    const centerBtn = document.getElementById('orbitCenter');
+    const inspTitle = document.getElementById('inspTitle');
+    const inspDesc = document.getElementById('inspDesc');
+
+    let pausado = false;
+    const nodeElements = [];
+
+    modulosData.forEach((mod, idx) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'orbit-node' + (idx === 0 ? ' active' : '');
+        btn.textContent = mod.nome;
+
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.orbit-node').forEach(n => n.classList.remove('active'));
+            btn.classList.add('active');
+            inspTitle.textContent = mod.titulo;
+            inspDesc.textContent = mod.desc;
+        });
+
+        stage.appendChild(btn);
+        nodeElements.push({ el: btn, data: mod });
+    });
+
+    centerBtn.addEventListener('click', () => {
+        pausado = !pausado;
+        centerBtn.style.borderColor = pausado ? '#FF3B00' : '#222936';
+    });
+
+    function animarOrbita() {
+        const escala = stage.offsetWidth < 360 ? 0.82 : 1;
+        const centro = stage.offsetWidth / 2;
+
+        nodeElements.forEach(item => {
+            if (!pausado) {
+                item.data.angulo += item.data.velocidade;
+            }
+            const r = item.data.raio * escala;
+            const x = centro + Math.cos(item.data.angulo) * r;
+            const y = centro + Math.sin(item.data.angulo) * r;
+            item.el.style.left = `${x}px`;
+            item.el.style.top = `${y}px`;
+        });
+
+        requestAnimationFrame(animarOrbita);
+    }
+
+    animarOrbita();
+</script>
+</body>
+</html>
